@@ -5,7 +5,7 @@ list2env(
   dataset<-lapply(setNames(temp, make.names(gsub("*.csv$", "", temp))), 
                   read.csv), envir = .GlobalEnv)
 finaldata<-matrix(ncol=8,nrow=334)
-sum1=0
+sum1=1
 sum2=0
 sum3=0
 sum4=0
@@ -91,14 +91,6 @@ for(i in 1:length(dataset))
 {
   variable<-as.data.frame(dataset[i])
   colnames(variable)<-c("Thrust","Torque")
-  meanthrust<-mean(variable$Thrust)
-  maxthrust<-max(variable$Thrust)
-  meantor<-mean(variable$Torque)
-  maxtor<-max(variable$Torque)
-  area<-abs(trapz(variable$Thrust,variable$Torque))
-  deg_num<-nrow(variable)
-  name<-names(dataset[i])
-  pos<-regexpr('h', name)
   holenumber<-as.numeric(substr(name,pos+1,nchar(name)))
   drillbit<-as.numeric(substr(name,2,pos-1))
   drillcharval<-as.character(drillbit)
